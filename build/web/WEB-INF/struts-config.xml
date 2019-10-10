@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+<struts-config>
+    <form-beans>
+        <form-bean name="categoryActionForm" type="com.myapp.struts.categoryActionForm"/>
+        <form-bean name="productActionForm" type="org.apache.struts.validator.DynaValidatorForm">
+            <form-property name="productID" type="java.lang.Integer"/>
+            <form-property name="productName" type="java.lang.String"/>
+            <form-property name="price" type="java.lang.Double"/>
+            <form-property name="imgSrc" type="java.lang.String"/>
+            <form-property name="summary" type="java.lang.String"/>
+            <form-property name="description" type="java.lang.String"/>
+            <form-property name="status" type="java.lang.Boolean" />
+            <form-property name="categoryID" type="java.lang.Integer"/>
+        </form-bean>
+        <form-bean name="loginActionForm" type="com.myapp.struts.loginActionForm"/>
+        <form-bean name="deleteNProductActionForm" type="com.myapp.struts.deleteNProductActionForm"/>
+        <form-bean name="deleteNCategoryActionForm" type="com.myapp.struts.deleteNCategoryActionForm"/>
+    </form-beans>
+    <global-exceptions>
+    </global-exceptions>
+    <global-forwards>
+        <forward name="welcome"  path="/Welcome.do"/>
+    </global-forwards>
+    <action-mappings>
+        <action input="/Manages/AddCategory.do" name="categoryActionForm" path="/manages/categoryAction" scope="request" type="com.myapp.struts.categoryAction">
+            <forward name="success" path="/Manages/CategoryList.do"/>
+            <forward name="error" path="/Manages/Error.do"/>
+        </action>
+        <action path="/manages/categoryActionNoForm" type="com.myapp.struts.categoryActionNoForm">
+            <forward name="success" path="/Manages/CategoryList.do"/>
+            <forward name="error" path="/Manages/Error.do"/>
+            <forward name="edit" path="/Manages/EditCategory.do"/>
+        </action>
+        <action input="/Manages/AddProduct.do" name="productActionForm" path="/manages/productAction" scope="request" type="com.myapp.struts.productAction">
+            <forward name="success" path="/Manages/ProductList.do"/>
+            <forward name="error" path="/Manages/Error.do"/>
+        </action>
+        <action input="/manages/CategoryList.jsp" name="deleteNCategoryActionForm" path="/manages/deleteNCategoryAction" scope="request" type="com.myapp.struts.deleteNCategoryAction">
+            <forward name="success" path="/Manages/CategoryList.do"/>
+            <forward name="error" path="/Manages/Error.do"/>
+        </action>
+        <action input="/manages/ProductList.jsp" name="deleteNProductActionForm" path="/manages/deleteNProductAction" scope="request" type="com.myapp.struts.deleteNProductAction">
+            <forward name="success" path="/Manages/ProductList.do"/>
+            <forward name="error" path="/Manages/Error.do"/>
+        </action>
+        <action path="/manages/productActionNoForm" type="com.myapp.struts.productActionNoForm">
+            <forward name="success" path="/Manages/ProductList.do"/>
+            <forward name="error" path="/Manages/Error.do"/>
+            <forward name="edit" path="/Manages/EditProduct.do"/>
+        </action>
+        <action path="/productDetailAction" type="com.myapp.struts.productDetailAction">
+            <forward name="success" path="/ProductDetail.do"/>
+        </action>
+        <action input="/index.jsp" name="loginActionForm" path="/loginAction" scope="session" type="com.myapp.struts.loginAction">
+            <forward name="success" path="/Layout.do"/>
+        </action>
+        <action path="/shoppingCartAction" type="com.myapp.struts.shoppingCartAction">
+            <forward name="success" path="/ShoppingCart.do"/>
+        </action>
+        <action path="/Welcome" forward="/welcomeStruts.jsp"/>
+        <action path="/Layout" forward="Layout"/>
+        <action path="/ProductDetail" forward="ProductDetail"/>
+        <action path="/ShoppingCart" forward="ShoppingCart"/>
+        <action path="/Manages/Layout" forward="Manages.Layout"/>
+        <action path="/Manages/AddCategory" forward="Manages.AddCategory"/>
+        <action path="/Manages/AddProduct" forward="Manages.AddProduct"/>
+        <action path="/Manages/EditCategory" forward="Manages.EditCategory"/>
+        <action path="/Manages/EditProduct" forward="Manages.EditProduct"/>
+        <action path="/Manages/Success" forward="Manages.Success"/>
+        <action path="/Manages/CategoryList" forward="Manages.CategoryList"/>
+        <action path="/Manages/ProductList" forward="Manages.ProductList"/>
+        <action path="/Manages/Error" forward="Manages.Error"/>
+    </action-mappings>
+    <controller processorClass="org.apache.struts.tiles.TilesRequestProcessor"/>
+    <message-resources parameter="com/myapp/struts/ApplicationResource"/>    
+    
+    <!-- ========================= Tiles plugin ===============================-->
+    <!--
+    This plugin initialize Tiles definition factory. This later can takes some
+    parameters explained here after. The plugin first read parameters from
+    web.xml, thenoverload them with parameters defined here. All parameters
+    are optional.
+    The plugin should be declared in each struts-config file.
+    - definitions-config: (optional)
+    Specify configuration file names. There can be several comma
+    separated file names (default: ?? )
+    - moduleAware: (optional - struts1.1)
+    Specify if the Tiles definition factory is module aware. If true
+    (default), there will be one factory for each Struts module.
+    If false, there will be one common factory for all module. In this
+    later case, it is still needed to declare one plugin per module.
+    The factory will be initialized with parameters found in the first
+    initialized plugin (generally the one associated with the default
+    module).
+    true : One factory per module. (default)
+    false : one single shared factory for all modules
+    - definitions-parser-validate: (optional)
+    Specify if xml parser should validate the Tiles configuration file.
+    true : validate. DTD should be specified in file header (default)
+    false : no validation
+
+    Paths found in Tiles definitions are relative to the main context.
+    -->
+    <plug-in className="org.apache.struts.tiles.TilesPlugin" >
+        <set-property property="definitions-config" value="/WEB-INF/tiles-defs.xml" />
+        <set-property property="moduleAware" value="true" />
+    </plug-in>
+    
+    <!-- ========================= Validator plugin ================================= -->
+    <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+        <set-property
+            property="pathnames"
+            value="/WEB-INF/validator-rules.xml,/WEB-INF/validation.xml"/>
+    </plug-in>
+</struts-config>

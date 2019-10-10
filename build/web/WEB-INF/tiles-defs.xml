@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+ <!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN"
+       "http://jakarta.apache.org/struts/dtds/tiles-config_1_1.dtd">
+<!--
+     This is a blank Tiles definition file with a commented example.
+-->
+<tiles-definitions>
+    <definition name="Layout" page="/client.jsp">
+        <put name="title" type="string" value="Welcome to Mysite" />
+        <put name="header" value="/header.jsp" />
+        <put name="left" value="/left.jsp" />
+        <put name="right" value="/right.jsp" />
+        <put name="menubar" value="/menubar.jsp" />
+        <put name="body" value="/body.jsp" />
+        <put name="footer" value="/footer.jsp" />
+    </definition>
+    <definition name="ProductDetail" extends="Layout">
+        <put name="body" value="/productDetail.jsp"/>
+    </definition>
+    <definition name="ShoppingCart" extends="Layout">
+        <put name="body" value="/Cart.jsp"/>
+    </definition>
+    <definition name="Manages.Layout" page="/manages/admin.jsp">
+        <put name="title" type="string" value="Welcome to Mysite" />
+        <put name="header" value="/manages/header.jsp" />
+        <put name="menu" value="/manages/left.jsp" />
+        <put name="body" value="/manages/body.jsp" />
+        <put name="footer" value="/manages/footer.jsp" />
+    </definition>
+    <definition name="Manages.AddCategory" extends="Manages.Layout">
+        <put name="body" value="/manages/addCategory.jsp"/>
+    </definition>
+    <definition name="Manages.AddProduct" extends="Manages.Layout">
+        <put name="body" value="/manages/addProduct.jsp"/>
+    </definition>
+    <definition name="Manages.EditCategory" extends="Manages.Layout">
+        <put name="body" value="/manages/editCategory.jsp"/>
+    </definition>
+    <definition name="Manages.EditProduct" extends="Manages.Layout">
+        <put name="body" value="/manages/editProduct.jsp"/>
+    </definition>
+    <definition name="Manages.Success" extends="Manages.Layout">
+        <put name="body" value="/manages/Success.jsp"/>
+    </definition>
+    <definition name="Manages.CategoryList" extends="Manages.Layout">
+        <put name="body" value="/manages/CategoryList.jsp"/>
+    </definition>
+    <definition name="Manages.ProductList" extends="Manages.Layout">
+        <put name="body" value="/manages/ProductList.jsp"/>
+    </definition>
+    <definition name="Manages.Error" extends="Manages.Layout">
+        <put name="body" value="/manages/Error.jsp"/>
+    </definition> 
+    <!-- sample tiles definitions
+    <definition name=".mainLayout" path="/common/layouts/classicLayout.jsp">
+        <put name="title"  value="Sample Page Title" />
+        <put name="header" value="/common/header.jsp" />
+        <put name="menu"   value=".mainMenu" />
+        <put name="footer" value="/common/footer.jsp" />
+        <put name="body"   value=".portal.body" />
+    </definition>
+
+    <definition name=".mainMenu" path="/common/layouts/vboxLayout.jsp" >
+        <putList name="list" >
+            <add value=".menu.links" />
+            <add value=".menu.taglib.references" />
+            <add value=".menu.printer.friendly" />
+            <add value=".menu.old.documents" />
+      </putList>
+    </definition>
+
+    <definition name="aPage" extends=".mainLayout">
+        <put name="title"  value="Another Title" />
+        <put name="body"   value=".aPage.body" />
+    </definition>
+
+    end samples -->
+    <definition name="${YOUR_DEFINITION_HERE}">
+    </definition>
+</tiles-definitions>
